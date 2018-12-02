@@ -29,4 +29,8 @@
 
     <!-- Lockscreen title -->
     <string name="lockscreen_title">Lockscreen and Gestures</string>
+
+    <!-- Clock title -->
+    <string name="clock_main">Clock settings</string>
+    <string name="clock_main_summary">Statusbar clock customisation</string>
 </resources>
