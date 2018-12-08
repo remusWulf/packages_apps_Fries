@@ -23,4 +23,11 @@
         android:fragment="com.potato.fries.fragments.ClockOptions"
         android:icon="@drawable/ic_clock" />
 
+    <!-- VoLTE Icon -->
+    <com.potato.fries.preferences.SystemSettingSwitchPreference
+        android:key="volte_icon"
+        android:title="@string/volte_icon_title"
+        android:summary="@string/volte_icon_summary"
+        android:defaultValue="false"/>
+
 </PreferenceScreen>
