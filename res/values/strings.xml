@@ -36,4 +36,7 @@
     <string name="volte_icon_title">VoLTE icon</string>
     <string name="volte_icon_summary">Display VoLTE icon (Needs a SystemUI restart to take effect)</string>
 
+    <!-- Statusbar tuner -->
+    <string name="statusbar_tuner_title">Status bar icons customization</string>
+
 </resources>
