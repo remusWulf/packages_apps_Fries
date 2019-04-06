@@ -23,4 +23,18 @@
         android:fragment="com.potato.fries.fragments.ClockOptions"
         android:icon="@drawable/ic_clock" />
 
+     <com.potato.fries.preferences.SystemSettingSwitchPreference
+        android:key="show_fourg_icon"
+        android:icon="@drawable/ic_fourg"
+        android:title="@string/show_fourg_icon_title"
+        android:summary="@string/show_fourg_icon_summary"
+        android:defaultValue="true"/>
+
+     <com.potato.fries.preferences.SystemSettingSwitchPreference
+        android:key="volte_icon"
+        android:icon="@drawable/ic_volte"
+        android:title="@string/volte_icon_title"
+        android:summary="@string/volte_icon_summary"
+        android:defaultValue="true"/>
+
 </PreferenceScreen>
