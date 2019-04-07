@@ -20,6 +20,8 @@ import android.os.Bundle;
 import android.content.Context;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.SearchIndexableResource;
+import android.provider.Settings;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
@@ -30,32 +32,39 @@ import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
-import com.potato.fries.preferences.SystemSettingListPreference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MiscFragment extends SettingsPreferenceFragment
+public class CutoutFragment extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener, Indexable {
 
-    private static final String KEY_WEATHER_TEMP = "weather_lockscreen_unit";
+    private static final String KEY_DISPLAY_CUTOUT_STYLE = "display_cutout_style";
+    private ListPreference mCutoutStyle;
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mCutoutStyle) {
+            String value = (String) newValue;
+            Settings.System.putInt(getContentResolver(), Settings.System.DISPLAY_CUTOUT_MODE, Integer.valueOf(value));
+            int valueIndex = mCutoutStyle.findIndexOfValue(value);
+            mCutoutStyle.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+            mCutoutStyle.setSummary(mCutoutStyle.getEntries()[valueIndex]);
+        }
         return false;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.misc);
-
-        SystemSettingListPreference mWeatherTemp =
-                (SystemSettingListPreference) findPreference(KEY_WEATHER_TEMP);
-        if (!com.potato.fries.preferences.Utils.isPackageInstalled(
-                getActivity(), "org.pixelexperience.weather.client")) {
-            getPreferenceScreen().removePreference(mWeatherTemp);
-        }
+        addPreferencesFromResource(R.xml.cutout);
+        mCutoutStyle = (ListPreference) findPreference(KEY_DISPLAY_CUTOUT_STYLE);
+        int cutoutStyle = Settings.System.getInt(getContentResolver(),
+                Settings.System.DISPLAY_CUTOUT_MODE, 0);
+        int valueIndex = mCutoutStyle.findIndexOfValue(String.valueOf(cutoutStyle));
+        mCutoutStyle.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+        mCutoutStyle.setSummary(mCutoutStyle.getEntry());
+        mCutoutStyle.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -74,7 +83,7 @@ public class MiscFragment extends SettingsPreferenceFragment
         public List<SearchIndexableResource> getXmlResourcesToIndex(Context context, boolean enabled) {
             List<SearchIndexableResource> indexables = new ArrayList<>();
             SearchIndexableResource indexable = new SearchIndexableResource(context);
-            indexable.xmlResId = R.xml.misc;
+            indexable.xmlResId = R.xml.cutout;
             indexables.add(indexable);
             return indexables;
         }
