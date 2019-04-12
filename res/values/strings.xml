@@ -14,8 +14,8 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fries_dashboard_title">Fries</string>
-    <string name="fries_dashboard_summary">Customise your potato</string>
+    <string name="fries_dashboard_title">Extras</string>
+    <string name="fries_dashboard_summary">Customise your device</string>
     <string name="statusbar_main">Statusbar</string>
     <string name="statusbar_main_summary">Change potato status styles</string>
     <string name="theme_main">Themes</string>
