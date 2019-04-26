@@ -16,6 +16,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/statusbar_main">
 
+    <Preference
+        android:key="clock_settings"
+        android:title="@string/clock_main"
+        android:summary="@string/clock_main_summary"
+        android:fragment="com.potato.fries.fragments.ClockOptions"
+        android:icon="@drawable/ic_clock" />
+
      <com.potato.fries.preferences.SystemSettingSwitchPreference
         android:key="show_fourg_icon"
         android:icon="@drawable/ic_fourg"
@@ -29,11 +36,5 @@
         android:title="@string/volte_icon_title"
         android:summary="@string/volte_icon_summary"
         android:defaultValue="true"/>
-
-    <PreferenceScreen
-        android:key="smart_pixels"
-        android:title="@string/smart_pixels_title"
-        android:summary="@string/smart_pixels_summary"
-        android:fragment="com.potato.fries.fragments.SmartPixels" />
 
 </PreferenceScreen>
